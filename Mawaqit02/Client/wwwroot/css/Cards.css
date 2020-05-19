@@ -1,0 +1,46 @@
+﻿body {
+
+}
+
+.txtTitle {
+    color: white;
+    font-family: 'Arabic Typesetting';
+}
+
+.txtDate {
+    color: white;
+    font-family: 'Simplified Arabic';
+}
+
+.txtValue {
+    color: white;
+    font-family: 'Segoe UI';
+}
+
+.sbox {
+    background-color: #1b8046;
+    color: black;
+    border-color: #092815;
+    border-style: solid;
+}
+
+.sbox-sel-color {
+    background-color: #275eb0;
+    color: #FFDDFF;
+}
+
+.sbox-sel-border {
+    border-color: #0D1F04;
+    border-style: solid;
+}
+
+.sbox-sel-border-top {
+    border-top-color: #275eb0;
+    border-bottom-color: #0D1F04;
+    border-left-color: #0D1F04;
+    border-right-color: #0D1F04;
+    border-style: solid;
+    margin-top: -3px;
+}
+
+

@@ -1,0 +1,18 @@
+﻿@inherits FiveCardsBase
+    <link href="css/Cards.css" rel="stylesheet" />
+<div>
+   <div class="container-fluid" dir="rtl">
+       <div class="row">
+           @foreach (var value in Values)
+           {
+               <div class="col-sm" style="padding: 0px">
+                    <SalatCard
+                        Title=@value.Title
+                        Value=@value.Value
+                        TextColor=@(value.IsSelected ? SelectedTextColor : TextColor)
+                        BackgroundColor=@(value.IsSelected ? SelectedBackgroundColor : BackgroundColor)/>
+               </div>
+            }
+       </div>
+   </div>
+</div>

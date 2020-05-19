@@ -1,0 +1,15 @@
+﻿@inherits SalatCardBase
+
+<link href="css/Cards.css" rel="stylesheet" />
+
+<div class="text-sm-center"
+     style="background-color: @BackgroundColor;
+            border-color: @GetBorderColor();
+            border-width: 1px; border-style: solid;">
+    <h1 class="txtTitle" style="color: @TextColor; font-size:6vw">
+        @Title
+    </h1>
+    <h1 class="txtValue" style="color: @TextColor; font-size:3vw">
+        @Value
+    </h1>
+</div>

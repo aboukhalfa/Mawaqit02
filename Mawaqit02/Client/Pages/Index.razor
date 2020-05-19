@@ -1,0 +1,86 @@
+﻿@page "/"
+@inherits IndexBase
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+
+<FiveCards Values="@Values" BackgroundColor="@CardBackgroundColor"
+           SelectedBackgroundColor="@SelectedCardBackgroundColor"
+           TextColor="@CardTextColor"
+           SelectedTextColor="@SelectedCardTextColor"></FiveCards>
+<br />
+
+@foreach (var dayTimes in AllDisplayValues)
+{
+    <div class="container-fluid" dir="rtl">
+        <div class="row">
+            <div class="col-sm-9 datebox">
+                <div class="text-sm-center">
+                    <span class="txtDate">
+                        @dayTimes.First().Time.ToString("dddd",
+                        new System.Globalization.CultureInfo("ar-AE"))
+                    </span>
+                    <span class="txtDate">
+                        @dayTimes.First().Time.ToString("d MMMM yyyy",
+                        new System.Globalization.CultureInfo("ar-SA"))
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-3 timebox">
+                <div class="text-sm-center align-middle">
+                    <span class="txtDate">@DateTime.Now.ToString("HH:mm")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm sbox-sel-border sbox-sel-color">
+                <div class="text-sm-center">
+                    <span class="txtAr">@($"صلاة ")</span>
+                    <span class="txtAr" style="font-weight: bolder">@($"ال{dayTimes.First(x => x.IsSelected).Title}")</span>
+                    <span class="txtAr px-sm-2">@($"على")</span>
+                    <span class="txtTime" style="font-weight: bolder">@dayTimes.First(x => x.IsSelected).Time.ToString("HH:mm")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+
+            <FiveCards Values="@dayTimes.Select(x => (x.Title, x.Time.ToString("HH:mm"), x.IsSelected))" 
+                       BackgroundColor="@CardBackgroundColor"
+                       SelectedBackgroundColor="@SelectedCardBackgroundColor"
+                       TextColor="@CardTextColor"
+                       SelectedTextColor="@SelectedCardTextColor"></FiveCards>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+}
+<br />
+
+<br />
+
+
+@code {
+
+    private async void SaveColors()
+    {
+        await LocalStorage.SetItemAsync("fill", CardBackgroundColor);
+        await LocalStorage.SetItemAsync("selectedfill", SelectedCardBackgroundColor);
+        await LocalStorage.SetItemAsync("text", CardTextColor);
+        await LocalStorage.SetItemAsync("selectedtext", SelectedCardTextColor);
+    }
+
+    private async void ResetColors()
+    {
+        await LocalStorage.RemoveItemAsync("fill");
+        await LocalStorage.RemoveItemAsync("selectedfill");
+        await LocalStorage.RemoveItemAsync("text");
+        await LocalStorage.RemoveItemAsync("selectedtext");
+    }
+
+    List<(string Title, string Value, bool IsSelected)> Values = new List<(string Title, string Value, bool IsSelected)>();
+
+
+}
