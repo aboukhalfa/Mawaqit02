@@ -1,18 +1,76 @@
 ﻿@inherits FiveCardsBase
     <link href="css/Cards.css" rel="stylesheet" />
 <div>
-   <div class="container-fluid" dir="rtl">
-       <div class="row">
-           @foreach (var value in Values)
-           {
-               <div class="col-sm" style="padding: 0px">
-                    <SalatCard
-                        Title=@value.Title
-                        Value=@value.Value
-                        TextColor=@(value.IsSelected ? SelectedTextColor : TextColor)
-                        BackgroundColor=@(value.IsSelected ? SelectedBackgroundColor : BackgroundColor)/>
-               </div>
+    <div class="container-fluid" dir="rtl">
+
+        <!-- Date -->
+        <div class="row">
+            <div class="col-sm-9 datebox" style="padding: 0px; border: solid; 
+                        border-color: @GetBorderColor(DateBackgroundColor);
+                        border-width: 3px">
+
+                <SalatCard TextColor=@DateTextColor
+                           BackgroundColor=@DateBackgroundColor>
+                    <Content>
+                        <span class="txtDate">
+                            @Values.First().Value.ToString("dddd",
+                            new System.Globalization.CultureInfo("ar-AE"))
+                        </span>
+                        <span class="txtDate">
+                            @Values.First().Value.ToString("d MMMM yyyy",
+                            new System.Globalization.CultureInfo("ar-SA"))
+                        </span>
+                    </Content>
+                </SalatCard>
+            </div>
+
+            <!-- Time -->
+            <div class="col-sm-3 timebox" style="padding: 0px; border: solid; 
+                        border-color: @GetBorderColor(TimeBackgroundColor);
+                        border-width: 3px">
+
+                <SalatCard TextColor=@TimeTextColor
+                           BackgroundColor=@TimeBackgroundColor>
+                    <Content>
+                        <span class="txtDate">@DateTime.Now.ToString("HH:mm")</span>
+                    </Content>
+                </SalatCard>
+
+            </div>
+
+        </div>
+
+        <!-- Selected long description -->
+        @if (SelectedValueHeader!=null)
+        {
+            <div class="row">
+                <div class="col-sm" style="padding: 0px; border: solid; 
+                        border-color: @GetBorderColor(SelectedBackgroundColor) ;
+                        border-bottom-color: @SelectedBackgroundColor ;
+                        border-width: 3px">
+                    <SalatCard TextColor=@SelectedTextColor
+                               BackgroundColor=@SelectedBackgroundColor>
+                        <Content>
+                            @SelectedValueHeader
+                        </Content>
+                    </SalatCard>
+                </div>
+            </div>
+        }
+
+        <!-- 5 Titles/Times -->
+        <div class="row">
+            @foreach (var value in Values)
+            {
+                <div class="col-sm" style="padding: 0px; border: solid; 
+                            border-color: @GetBorderColor(value.IsSelected);
+                            border-width: 3px; border-top-color: @GetBorderColor(value.IsSelected, isTop:true)" >
+                    <SalatCard Title=@value.Title
+                               Value=@value.Value.ToString("HH:mm")
+                               TextColor=@(value.IsSelected ? SelectedTextColor : TextColor)
+                               BackgroundColor=@(value.IsSelected ? SelectedBackgroundColor : BackgroundColor)/>
+                </div>
             }
-       </div>
-   </div>
+        </div>
+    </div>
 </div>

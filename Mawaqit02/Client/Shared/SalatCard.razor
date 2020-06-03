@@ -2,14 +2,25 @@
 
 <link href="css/Cards.css" rel="stylesheet" />
 
-<div class="text-sm-center"
-     style="background-color: @BackgroundColor;
-            border-color: @GetBorderColor();
-            border-width: 1px; border-style: solid;">
-    <h1 class="txtTitle" style="color: @TextColor; font-size:6vw">
-        @Title
-    </h1>
-    <h1 class="txtValue" style="color: @TextColor; font-size:3vw">
-        @Value
-    </h1>
-</div>
+@if (Content != null)
+{
+    <div class="text-sm-center txtValue"
+         style="background-color: @BackgroundColor; color: @TextColor; font-size:@(TitleValueSize)vw">
+            @Content
+    </div>
+}
+else
+{
+    <div class="text-sm-center"
+         style="background-color: @BackgroundColor">
+        <div class="txtTitle" style="color: @TextColor; font-size:@(TitleFontSize)vw">
+            @Title
+        </div>
+    </div>
+    <div class="text-sm-center"
+         style="background-color: @BackgroundColor">
+        <div class="txtValue" style="color: @TextColor; font-size:@(TitleValueSize)vw">
+            @Value
+        </div>
+    </div>
+}

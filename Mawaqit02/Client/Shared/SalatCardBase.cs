@@ -9,6 +9,9 @@ namespace Mawaqit02.Client.Shared
     public class SalatCardBase: ComponentBase
     {
         [Parameter]
+        public RenderFragment Content { get; set; }
+
+        [Parameter]
         public string Title { get; set; } = "Hello";
 
         [Parameter]
@@ -20,10 +23,10 @@ namespace Mawaqit02.Client.Shared
         [Parameter]
         public string TextColor { get; set; } = "#FFFFFF";
 
-        public string GetBorderColor()
-        {
-            var (r, g, b) = Util.ToRGB(BackgroundColor);
-            return Util.FromRGB(((byte)(r*2/3), (byte)(g*2/3), (byte)(b*2/3)));
-        }
+        [Parameter]
+        public string TitleFontSize { get; set; } = "6";
+
+        [Parameter]
+        public string TitleValueSize { get; set; } = "3";
     }
 }

@@ -86,7 +86,7 @@
         await LocalStorage.RemoveItemAsync("selectedtext");
     }
 
-    List<(string Title, string Value, bool IsSelected)> Values = new List<(string Title, string Value, bool IsSelected)>();
+    List<(string Title, DateTime Value, bool IsSelected)> Values = new List<(string Title, DateTime Value, bool IsSelected)>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -99,7 +99,7 @@
         var dt = DateTime.Now.Date.AddHours(5);
         foreach (var title in titles)
         {
-            Values.Add((title, dt.ToString("HH:mm"), dt.Hour == 9 ? true : false));
+            Values.Add((title, dt, dt.Hour == 9 ? true : false));
             dt = dt.AddHours(4);
         }
 
