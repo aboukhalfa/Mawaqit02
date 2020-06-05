@@ -4,52 +4,77 @@
 <FiveCards Values="@Values" BackgroundColor="@CardBackgroundColor"
            SelectedBackgroundColor="@SelectedCardBackgroundColor"
            TextColor="@CardTextColor"
-           SelectedTextColor="@SelectedCardTextColor"></FiveCards>
+           SelectedTextColor="@SelectedCardTextColor"
+           DateTextColor="@DateTextColor"
+           DateBackgroundColor="@DateBackgroundColor"
+           TimeTextColor="@TimeTextColor"
+           TimeBackgroundColor="@TimeBackgroundColor"></FiveCards>
 <br />
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2 text-sm-right">
+        <div class="col-sm-5 text-sm-right">
+            <label>Date background:</label>
+        </div>
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@DateBackgroundColor" @bind-value:event="oninput" />
+        </div>
+        <div class="col-sm-5 text-sm-right">
+            <label>Date text:</label>
+        </div>
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@DateTextColor" @bind-value:event="oninput" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 text-sm-right">
+            <label>Date background:</label>
+        </div>
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@TimeBackgroundColor" @bind-value:event="oninput" />
+        </div>
+        <div class="col-sm-5 text-sm-right">
+            <label>Date text:</label>
+        </div>
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@TimeTextColor" @bind-value:event="oninput" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 text-sm-right">
             <label>Fill:</label>
         </div>
-        <div class="col-sm-10">
-            <input style="width: 120px"
-                   type="color" @bind-value="@CardBackgroundColor" @bind-value:event="oninput" />
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@CardBackgroundColor" @bind-value:event="oninput" />
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 text-sm-right">
-            <label>Selected fill:</label>
-        </div>
-        <div class="col-sm">
-            <input style="width: 120px"
-                   type="color" @bind-value="@SelectedCardBackgroundColor" @bind-value:event="oninput" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 text-sm-right">
+        <div class="col-sm-5 text-sm-right">
             <label>Text:</label>
         </div>
-        <div class="col-sm">
-            <input style="width: 120px"
-                   type="color" @bind-value="@CardTextColor" @bind-value:event="oninput" />
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@CardTextColor" @bind-value:event="oninput" />
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 text-sm-right">
+        <div class="col-sm-5 text-sm-right">
+            <label>Selected fill:</label>
+        </div>
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@SelectedCardBackgroundColor" @bind-value:event="oninput" />
+        </div>
+        <div class="col-sm-5 text-sm-right">
             <label>Selected text:</label>
         </div>
-        <div class="col-sm">
-            <input style="width: 120px"
-                   type="color" @bind-value="@SelectedCardTextColor" @bind-value:event="oninput" />
+        <div class="col-sm-1">
+            <input type="color" @bind-value="@SelectedCardTextColor" @bind-value:event="oninput" />
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2 text-sm-right">
-        </div>
-        <div class="col-sm">
+            <br />
             <button class="btn btn-primary" @onclick="SaveColors">Save</button>
             <button class="btn btn-danger" @onclick="ResetColors">Reset</button>
+        </div>
+        <div class="col-sm">
         </div>
     </div>
 
@@ -62,28 +87,45 @@
 
 @code {
 
-    public string CardBackgroundColor { get; set; } = "#1b8046";
+    public string DateTextColor { get; set; } = "#FFFFFF";
 
-    public string SelectedCardBackgroundColor { get; set; } = "#275eb0";
+    public string DateBackgroundColor { get; set; } = "#943d1b";
+
+    public string TimeTextColor { get; set; } = "#FFFFFF";
+
+    public string TimeBackgroundColor { get; set; } = "#6b1565";
 
     public string CardTextColor { get; set; } = "#FFFFFF";
 
+    public string CardBackgroundColor { get; set; } = "#1b8046";
+
     public string SelectedCardTextColor { get; set; } = "#FFFFFF";
+
+    public string SelectedCardBackgroundColor { get; set; } = "#275eb0";
 
     private async void SaveColors()
     {
-        await LocalStorage.SetItemAsync("fill", CardBackgroundColor);
-        await LocalStorage.SetItemAsync("selectedfill", SelectedCardBackgroundColor);
-        await LocalStorage.SetItemAsync("text", CardTextColor);
-        await LocalStorage.SetItemAsync("selectedtext", SelectedCardTextColor);
+        await LocalStorage.SetItemAsync("DateBackgroundColor", DateBackgroundColor);
+        await LocalStorage.SetItemAsync("DateTextColor", DateTextColor);
+        await LocalStorage.SetItemAsync("TimeBackgroundColor", TimeBackgroundColor);
+        await LocalStorage.SetItemAsync("TimeTextColor", TimeTextColor);
+        await LocalStorage.SetItemAsync("CardBackgroundColor", CardBackgroundColor);
+        await LocalStorage.SetItemAsync("SelectedCardBackgroundColor", SelectedCardBackgroundColor);
+        await LocalStorage.SetItemAsync("CardTextColor", CardTextColor);
+        await LocalStorage.SetItemAsync("SelectedCardTextColor", SelectedCardTextColor);
     }
 
     private async void ResetColors()
     {
-        await LocalStorage.RemoveItemAsync("fill");
-        await LocalStorage.RemoveItemAsync("selectedfill");
-        await LocalStorage.RemoveItemAsync("text");
-        await LocalStorage.RemoveItemAsync("selectedtext");
+        await LocalStorage.RemoveItemAsync("DateBackgroundColor");
+        await LocalStorage.RemoveItemAsync("DateTextColor");
+        await LocalStorage.RemoveItemAsync("TimeBackgroundColor");
+        await LocalStorage.RemoveItemAsync("TimeTextColor");
+
+        await LocalStorage.RemoveItemAsync("CardBackgroundColor");
+        await LocalStorage.RemoveItemAsync("SelectedCardBackgroundColor");
+        await LocalStorage.RemoveItemAsync("CardTextColor");
+        await LocalStorage.RemoveItemAsync("SelectedCardTextColor");
     }
 
     List<(string Title, DateTime Value, bool IsSelected)> Values = new List<(string Title, DateTime Value, bool IsSelected)>();
@@ -103,10 +145,14 @@
             dt = dt.AddHours(4);
         }
 
-        CardBackgroundColor = await LocalStorage.GetItemAsync<string>("fill") ?? CardBackgroundColor;
-        SelectedCardBackgroundColor = await LocalStorage.GetItemAsync<string>("selectedfill") ?? SelectedCardBackgroundColor;
-        CardTextColor = await LocalStorage.GetItemAsync<string>("text") ?? CardTextColor;
-        SelectedCardTextColor = await LocalStorage.GetItemAsync<string>("selectedtext") ?? SelectedCardTextColor;
+        DateBackgroundColor = await LocalStorage.GetItemAsync<string>("DateBackgroundColor") ?? DateBackgroundColor;
+        DateTextColor = await LocalStorage.GetItemAsync<string>("DateTextColor") ?? DateTextColor;
+        TimeBackgroundColor = await LocalStorage.GetItemAsync<string>("TimeBackgroundColor") ?? TimeBackgroundColor;
+        TimeTextColor = await LocalStorage.GetItemAsync<string>("TimeTextColor") ?? TimeTextColor;
+        CardBackgroundColor = await LocalStorage.GetItemAsync<string>("CardBackgroundColor") ?? CardBackgroundColor;
+        SelectedCardBackgroundColor = await LocalStorage.GetItemAsync<string>("SelectedCardBackgroundColor") ?? SelectedCardBackgroundColor;
+        CardTextColor = await LocalStorage.GetItemAsync<string>("CardTextColor") ?? CardTextColor;
+        SelectedCardTextColor = await LocalStorage.GetItemAsync<string>("SelectedCardTextColor") ?? SelectedCardTextColor;
 
     }
 }

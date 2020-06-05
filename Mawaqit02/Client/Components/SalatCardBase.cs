@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mawaqit02.Client.Shared
+namespace Mawaqit02.Client.Components
 {
     public class SalatCardBase: ComponentBase
     {

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Blazored.LocalStorage;
+using Mawaqit02.Client.Services;
 
 namespace Mawaqit02.Client
 {
@@ -16,6 +17,9 @@ namespace Mawaqit02.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+            builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
+
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddBlazoredLocalStorage();

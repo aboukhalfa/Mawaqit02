@@ -14,6 +14,14 @@ namespace Mawaqit02.Client.Pages
         [Inject]
         protected ILocalStorageService LocalStorage { get; set; }
 
+        public string DateTextColor { get; set; } = "#FFFFFF";
+
+        public string DateBackgroundColor { get; set; } = "#943d1b";
+
+        public string TimeTextColor { get; set; } = "#FFFFFF";
+
+        public string TimeBackgroundColor { get; set; } = "#6b1565";
+
         public string CardBackgroundColor { get; set; } = "#1b8046";
 
         public string SelectedCardBackgroundColor { get; set; } = "#275eb0";
@@ -28,12 +36,15 @@ namespace Mawaqit02.Client.Pages
 
             CalculateTimes();
 
-            CardBackgroundColor = await LocalStorage.GetItemAsync<string>("fill") ?? CardBackgroundColor;
-            SelectedCardBackgroundColor = await LocalStorage.GetItemAsync<string>("selectedfill") ?? SelectedCardBackgroundColor;
-            CardTextColor = await LocalStorage.GetItemAsync<string>("text") ?? CardTextColor;
-            SelectedCardTextColor = await LocalStorage.GetItemAsync<string>("selectedtext") ?? SelectedCardTextColor;
+            DateBackgroundColor = await LocalStorage.GetItemAsync<string>("DateBackgroundColor") ?? DateBackgroundColor;
+            DateTextColor = await LocalStorage.GetItemAsync<string>("DateTextColor") ?? DateTextColor;
+            TimeBackgroundColor = await LocalStorage.GetItemAsync<string>("TimeBackgroundColor") ?? TimeBackgroundColor;
+            TimeTextColor = await LocalStorage.GetItemAsync<string>("TimeTextColor") ?? TimeTextColor;
+            CardBackgroundColor = await LocalStorage.GetItemAsync<string>("CardBackgroundColor") ?? CardBackgroundColor;
+            SelectedCardBackgroundColor = await LocalStorage.GetItemAsync<string>("SelectedCardBackgroundColor") ?? SelectedCardBackgroundColor;
+            CardTextColor = await LocalStorage.GetItemAsync<string>("CardTextColor") ?? CardTextColor;
+            SelectedCardTextColor = await LocalStorage.GetItemAsync<string>("SelectedCardTextColor") ?? SelectedCardTextColor;
         }
-
 
         private (string EnName, string ArName, DateTime Time) _closestTime;
 

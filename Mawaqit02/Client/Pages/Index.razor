@@ -10,20 +10,14 @@
             <div class="col-sm" style="">
 
             <FiveCards Values="@dayTimes.Select(x => (x.Title, x.Time, x.IsSelected))" 
+                       DateBackgroundColor="@DateBackgroundColor"
+                       DateTextColor="@DateTextColor"
+                       TimeBackgroundColor="@TimeBackgroundColor"
+                       TimeTextColor="@TimeTextColor"
                        BackgroundColor="@CardBackgroundColor"
                        SelectedBackgroundColor="@SelectedCardBackgroundColor"
                        TextColor="@CardTextColor"
                        SelectedTextColor="@SelectedCardTextColor">
-                <SelectedValueHeader>
-                    <span style="font-size:6vw; font-family: 'Arabic Typesetting';
-                        line-height: 1">@($"صلاة ")</span>
-                    <span style="font-size:7vw; font-family: 'Arabic Typesetting'; 
-                        font-weight: bold; line-height: 1">@($"ال{dayTimes.First(x => x.IsSelected).Title}")</span>
-                    <span class="px-sm-1" style="font-size:6vw; font-family: 'Arabic Typesetting';
-                        line-height: 1">@($"على الساعة")</span>
-                    <span style="font-size:5vw; font-family: 'Arabic Typesetting'; font-weight: bolder;
-                        line-height: 1">@dayTimes.First(x => x.IsSelected).Time.ToString("HH:mm")</span>
-                </SelectedValueHeader>
             </FiveCards>
             </div>
         </div>

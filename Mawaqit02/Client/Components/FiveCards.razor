@@ -3,20 +3,20 @@
 <div>
     <div class="container-fluid" dir="rtl">
 
-        <!-- Date -->
         <div class="row">
-            <div class="col-sm-9 datebox" style="padding: 0px; border: solid; 
+            <!-- Date -->
+            <div class="col-sm-9 datebox" style="padding: 0px; border: solid;
                         border-color: @GetBorderColor(DateBackgroundColor);
                         border-width: 3px">
 
                 <SalatCard TextColor=@DateTextColor
                            BackgroundColor=@DateBackgroundColor>
                     <Content>
-                        <span class="txtDate">
+                        <span class="txtDate" style="color: @DateTextColor">
                             @Values.First().Value.ToString("dddd",
                             new System.Globalization.CultureInfo("ar-AE"))
                         </span>
-                        <span class="txtDate">
+                        <span class="txtDate" style="color: @DateTextColor">
                             @Values.First().Value.ToString("d MMMM yyyy",
                             new System.Globalization.CultureInfo("ar-SA"))
                         </span>
@@ -25,14 +25,14 @@
             </div>
 
             <!-- Time -->
-            <div class="col-sm-3 timebox" style="padding: 0px; border: solid; 
+            <div class="col-sm-3 timebox" style="padding: 0px; border: solid;
                         border-color: @GetBorderColor(TimeBackgroundColor);
                         border-width: 3px">
 
                 <SalatCard TextColor=@TimeTextColor
                            BackgroundColor=@TimeBackgroundColor>
                     <Content>
-                        <span class="txtDate">@DateTime.Now.ToString("HH:mm")</span>
+                        <span class="txtDate" style="color: @TimeTextColor">@DateTime.Now.ToString("HH:mm")</span>
                     </Content>
                 </SalatCard>
 
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Selected long description -->
-        @if (SelectedValueHeader!=null)
+        @if (@IsSelectionDescriptionVisible)
         {
             <div class="row">
                 <div class="col-sm" style="padding: 0px; border: solid; 
@@ -51,7 +51,15 @@
                     <SalatCard TextColor=@SelectedTextColor
                                BackgroundColor=@SelectedBackgroundColor>
                         <Content>
-                            @SelectedValueHeader
+                            <span style="font-size:6vw; font-family: 'Arabic Typesetting';
+                        line-height: 1">@($"صلاة ")</span>
+                            <span style="font-size:7vw; font-family: 'Arabic Typesetting';
+                        font-weight: bold; line-height: 1">@($"ال{Values.First(x => x.IsSelected).Title}")</span>
+                            <span class="px-sm-1" style="font-size:6vw; font-family: 'Arabic Typesetting';
+                        line-height: 1">@($"على الساعة")</span>
+                            <span style="font-size:5vw; font-family: 'Arabic Typesetting'; font-weight: bolder;
+                        line-height: 1">@Values.First(x => x.IsSelected).Value.ToString("HH:mm")</span>
+
                         </Content>
                     </SalatCard>
                 </div>

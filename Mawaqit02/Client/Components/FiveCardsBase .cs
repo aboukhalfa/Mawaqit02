@@ -3,16 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mawaqit02.Client.Shared;
 
-namespace Mawaqit02.Client.Shared
+namespace Mawaqit02.Client.Components
 {
     public class FiveCardsBase: ComponentBase
     {
         [Parameter]
         public IEnumerable<(string Title, DateTime Value, bool IsSelected)> Values { get; set; }
 
-        [Parameter]
-        public RenderFragment SelectedValueHeader { get; set; }
+        //[Parameter]
+        //public RenderFragment SelectedValueHeader { get; set; }
 
         [Parameter]
         public string BackgroundColor { get; set; } = "#1b8046";
@@ -21,22 +22,26 @@ namespace Mawaqit02.Client.Shared
         public string TextColor { get; set; } = "#FFFFFF";
 
         [Parameter]
-        public string SelectedTextColor { get; set; } = "#FFDDFF";
+        public string SelectedTextColor { get; set; } = "#FFFFFF";
 
         [Parameter]
         public string SelectedBackgroundColor { get; set; } = "#275eb0";
 
         [Parameter]
-        public string DateTextColor { get; set; } = "#FFDDFF";
+        public string DateTextColor { get; set; } = "#FFFFFF";
 
         [Parameter]
         public string DateBackgroundColor { get; set; } = "#943d1b";
 
         [Parameter]
-        public string TimeTextColor { get; set; } = "#FFDDFF";
+        public string TimeTextColor { get; set; } = "#FFFFFF";
 
         [Parameter]
         public string TimeBackgroundColor { get; set; } = "#6b1565";
+
+        [Parameter]
+        public bool IsSelectionDescriptionVisible { get; set; } = true;
+
 
         protected string GetBoxClass((string Title, string Value, bool IsSelected) v)
         {
